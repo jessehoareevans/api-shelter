@@ -7,7 +7,7 @@ class Cat < ApplicationRecord
    Cat.where('lower(name) = ?', name.downcase)
   end
 
-  def self.random
+  def self.random_cat
     Cat.order('RANDOM()').first
   end
 end

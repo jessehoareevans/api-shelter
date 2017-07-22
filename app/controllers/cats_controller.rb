@@ -3,15 +3,13 @@ class CatsController < ApplicationController
   def index
     if params[:name]
       @cats = Cat.search(params[:name])
+    elsif
+      params[:random_cat]
+      @cats = Cat.random_cat
     else
       @cats = Cat.all
     end
       json_response(@cats)
-  end
-
-  def random
-    @cat = Cat.random
-    json_response(@cat)
   end
 
   def show
