@@ -1,8 +1,17 @@
 class CatsController < ApplicationController
 
   def index
-    @cats = Cat.all
-    json_response(@cats)
+    if params[:name]
+      @cats = Cat.search(params[:name])
+    else
+      @cats = Cat.all
+    end
+      json_response(@cats)
+  end
+
+  def random
+    @cat = Cat.random
+    json_response(@cat)
   end
 
   def show
