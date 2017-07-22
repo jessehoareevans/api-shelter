@@ -3,8 +3,11 @@ class DogsController < ApplicationController
   def index
     if params[:breed]
       @dogs = Dog.search(params[:breed])
+    elsif
+      params[:random_dog]
+      @dogs = Dog.random_dog
     else
-    @dogs = Dog.all
+      @dogs = Dog.all
   end
     json_response(@dogs)
   end

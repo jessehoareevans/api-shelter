@@ -6,4 +6,6 @@ class Dog < ApplicationRecord
   def self.search(breed)
    Dog.where('lower(breed) = ?', breed.downcase)
   end
+
+  scope :random_dog, -> { order("RANDOM()").first}
 end
