@@ -3,7 +3,7 @@ class CatsController < ApplicationController
   def index
     if params[:name]
       @cats = Cat.search(params[:name])
-    elsif
+    elsif 
       params[:random_cat]
       @cats = Cat.random_cat
     else
