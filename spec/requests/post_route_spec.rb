@@ -21,6 +21,28 @@ describe "post a cat route", :type => :request do
   it 'returns a created status' do
     expect(response).to have_http_status(:created)
   end
+end
 
+describe "post a cat route", :type => :request do
+  
+  before do
+    post '/dogs', params: { :name => 'dog_name', :breed => 'dog_breed', :age => 5 }
+  end
+
+  it 'returns the name of the dog' do
+    expect(JSON.parse(response.body)['name']).to eq('dog_name')
+  end
+
+  it 'returns the breed of the dog' do
+    expect(JSON.parse(response.body)['breed']).to eq('dog_breed')
+  end
+
+  it 'returns the age of the dog' do
+    expect(JSON.parse(response.body)['age']).to eq('5')
+  end
+
+  it 'returns a created status' do
+    expect(response).to have_http_status(:created)
+  end
 
 end
