@@ -1,7 +1,11 @@
 class DogsController < ApplicationController
 
   def index
+    if params[:breed]
+      @dogs = Dog.search(params[:breed])
+    else
     @dogs = Dog.all
+  end
     json_response(@dogs)
   end
 
