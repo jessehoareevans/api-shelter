@@ -11,9 +11,15 @@ class CatsController < ApplicationController
    end
 
    def create
-     @cat = Cat.create!(cat_params)
+     @cat = Cat.new(cat_params)
+     if @cat.save
      json_response(@cat, :created)
+   else
+     render status: 422, json: {
+       message: "Creation of cat did not meet required validations"
+     }
    end
+  end
 
    def update
      if @cat.update!(cat_params)

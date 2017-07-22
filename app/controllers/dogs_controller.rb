@@ -11,9 +11,15 @@ class DogsController < ApplicationController
    end
 
    def create
-     @dog = Dog.create!(dog_params)
+     @dog = Dog.new(dog_params)
+     if @dog.save
      json_response(@dog, :created)
+   else
+     render status: 422, json: {
+       message: "Creation of dog did not meet required validations"
+     }
    end
+  end
 
    def update
      if @dog.update!(dog_params)
