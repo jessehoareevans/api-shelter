@@ -3,7 +3,7 @@ require 'rails_helper'
 describe "get all cats route", :type => :request do
   let!(:cats) { FactoryGirl.create_list(:cat, 20)}
 
-  before { get '/cat'}
+  before { get '/cats'}
 
   it 'returns all cats' do
     expect(JSON.parse(response.body).size).to eq(20)
